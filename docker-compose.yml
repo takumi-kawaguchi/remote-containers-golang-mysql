@@ -1,0 +1,19 @@
+version: '3'
+services: 
+    web:
+        build: .
+        ports:
+            - "11323:1323"
+        depends_on:
+            - db
+        links: 
+            - db
+        command: sleep infinity
+    db:
+        image: mysql
+        ports: 
+            - '33306:3306'
+        expose: 
+            - '3306'
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
